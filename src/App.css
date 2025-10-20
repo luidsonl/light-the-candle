@@ -1,0 +1,8 @@
+:root{
+    --candle-color: #bebcb6;
+
+    --candle-width: 50px;
+    --candle-height: 300px;
+    --candle-wick-size: 20px;
+    --wick-color: #333333;
+}
