@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useCollision } from "../../contexts/CollisionContext";
+import { useRender } from "../../contexts/RenderContext";
 import Flame from "../Flame/Flame";
 import Wick from "../Wick/Wick";
 import './Candle.css';
@@ -13,7 +14,8 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
   const [id, setId] = useState(null);
   const elementRef = useRef(null);
   
-  const { createObject, isColliding, getIdsByType } = useCollision();
+  const { isColliding, getIdsByType } = useCollision();
+  const { createObject } = useRender();
 
   const handleMouseDown = (e) => {
     setOffset({ x: e.clientX - position.x, y: e.clientY - position.y });
