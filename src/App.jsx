@@ -6,8 +6,8 @@ import './App.css'
 export default function App(){
     return(
         <CollisionProvider>
-            <Candle id={1}/>
-            <Candle id={2}/>
+            <Candle/>
+            <Candle/>
         </CollisionProvider>
     )
 }

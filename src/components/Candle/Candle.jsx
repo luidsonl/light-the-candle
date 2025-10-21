@@ -4,11 +4,11 @@ import DraggableObject from "../DraggableObject/DraggableObject";
 import './Candle.css';
 import Wick from "../Wick/Wick";
 
-export default function Candle({id}) {
+export default function Candle() {
   const [lit, setLit] = useState(false);
 
   return (
-    <DraggableObject id={id}>
+    <DraggableObject>
       <div className="candle">
         <div className="wick-box">{lit ? <Flame /> : <Wick/>}</div>
         <div className="candle-body"></div>
