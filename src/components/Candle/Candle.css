@@ -8,18 +8,9 @@
 .candle .wick-box{
     height: var(--candle-wick-size);
 }
-.candle .wick-box .wick{
-    height: 100%;
-}
 
 .candle .candle-body{
     flex: 1;
     background-color: var(--candle-color);
     border-radius: calc(var(--candle-width)/4) calc(var(--candle-width)/4) 0 0;
-}
-.candle .wick{
-    width: 5px;
-    background-color: var(--wick-color);
-    margin-left: auto;
-    margin-right: auto;
 }

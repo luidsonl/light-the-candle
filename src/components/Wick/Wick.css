@@ -1,0 +1,7 @@
+.wick{
+    width: 5px;
+    background-color: var(--wick-color);
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
