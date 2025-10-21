@@ -40,6 +40,24 @@ module.exports = {
     port: 8080,
     hot: true,
     open: true,
+    client: {
+      logging: "verbose",
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
+    devMiddleware: {
+      stats: "minimal",
+    },
+  },
+
+  devtool: "eval-source-map",
+  stats: {
+    errorDetails: true,
+    colors: true,
+    modules: false,
+    assets: false,
   },
   mode: "development",
 };
