@@ -1,6 +1,7 @@
 export default class ObjectAbstraction{
-    constructor(elementRef){
+    constructor(elementRef, callbacks){
         this.elementRef = elementRef;
+        this.callbacks = callbacks
     }
 
     getEl(){

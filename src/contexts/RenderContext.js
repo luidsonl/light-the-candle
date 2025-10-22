@@ -7,7 +7,7 @@ export function RenderProvider({ children }) {
   const [nextId, setNextId] = useState(1);
   const [objects, setObjects] = useState({});
 
-  const createObject = useCallback((obj) => {
+  const createObject = useCallback((obj, callbacks) => {
     return new Promise((resolve) => {
       setNextId((prev) => {
         const newId = prev;
@@ -15,7 +15,7 @@ export function RenderProvider({ children }) {
         setObjects((prevObjects) => {
           const updatedObjects = {
             ...prevObjects,
-            [newId]: new ObjectAbstraction(obj),
+            [newId]: new ObjectAbstraction(obj, callbacks),
           };
           queueMicrotask(() => resolve(newId));
           

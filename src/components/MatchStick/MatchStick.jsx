@@ -14,8 +14,8 @@ export default function MatchStick({ initialPosition = { x: 100, y: 100 } }) {
   const [id, setId] = useState(null);
   const elementRef = useRef(null);
 
-  const { isColliding, getIdsByType } = useCollision();
-  const { createObject } = useRender();
+  const { isColliding } = useCollision();
+  const { createObject, getIdsByType, getById } = useRender();
 
   const lastPos = useRef(initialPosition);
   const lastTime = useRef(performance.now());
@@ -62,6 +62,19 @@ export default function MatchStick({ initialPosition = { x: 100, y: 100 } }) {
       lastTime.current = now;
 
       setPosition(newPosition);
+
+      const wicks = getIdsByType('wick');
+
+      const colisions = isColliding(id, wicks);
+
+
+      if(colisions.length > 0 && lit){
+        colisions.forEach(id => {
+          const element = getById(id)
+          element.callbacks['setLit'](true)
+        });
+      }
+
     };
 
     const handleMouseUp = () => setIsDragging(false);
@@ -73,7 +86,7 @@ export default function MatchStick({ initialPosition = { x: 100, y: 100 } }) {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, offset, isReady]);
+  }, [isDragging, offset, isReady, lit]);
 
   return (
     <div

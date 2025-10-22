@@ -14,8 +14,12 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
   const [id, setId] = useState(null);
   const elementRef = useRef(null);
   
-  const { isColliding, getIdsByType } = useCollision();
-  const { createObject } = useRender();
+  const { isColliding } = useCollision();
+  const { createObject, getIdsByType } = useRender();
+
+  const lastPos = useRef(initialPosition);
+  const lastTime = useRef(performance.now());
+  const lastToggle = useRef(0);
 
   const handleMouseDown = (e) => {
     setOffset({ x: e.clientX - position.x, y: e.clientY - position.y });
@@ -24,7 +28,7 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
 
   useEffect(() => {
     if (elementRef) {
-      createObject(elementRef).then((newId) => {
+      createObject(elementRef,{'setLit': setLit}).then((newId) => {
         setId(newId);
         setIsReady(true);
       });
@@ -35,7 +39,29 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
     if (!isDragging || !isReady) return;
 
     const handleMouseMove = (e) => {
-      setPosition({ x: e.clientX - offset.x, y: e.clientY - offset.y });
+      const now = performance.now();
+      const newPosition = {
+        x: e.clientX - offset.x,
+        y: e.clientY - offset.y,
+      };
+
+      const dx = newPosition.x - lastPos.current.x;
+      const dy = newPosition.y - lastPos.current.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const deltaTime = now - lastTime.current;
+
+      const speed = (distance / deltaTime) * 1000;
+      const timeSinceLastToggle = now - lastToggle.current;
+
+      if (speed > 2000 && timeSinceLastToggle > 500) {
+        setLit(false);
+        lastToggle.current = now;
+      }
+
+      lastPos.current = newPosition;
+      lastTime.current = now;
+
+      setPosition(newPosition);
     };
 
     const handleMouseUp = () => setIsDragging(false);
@@ -63,7 +89,7 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
       onMouseDown={handleMouseDown}
       className="candle"
     >
-      <div className="wick-box">{lit ? <Flame /> : <Wick />}</div>
+      <div className="wick-box">{lit && <Flame />} <Wick setLit={setLit} /></div>
       <div className="candle-body"></div>
     </div>
   );
