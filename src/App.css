@@ -5,4 +5,11 @@
     --candle-height: 300px;
     --candle-wick-size: 20px;
     --wick-color: #333333;
+
+    --matchstick-color: #999485;
+
+    --matchstick-width: 15px;
+    --matchstick-height: 100px;
+    --matchstick-head-size: 15px;
+    --matchstick-head-color: #6b2c2c;
 }

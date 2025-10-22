@@ -1,0 +1,5 @@
+.matchstick-head{
+    width: 100%;
+    background-color: var(--matchstick-head-color);
+    height: 100%;
+}

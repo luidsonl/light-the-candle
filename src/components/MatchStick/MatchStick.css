@@ -1,0 +1,15 @@
+.matchstick{
+    height: var(--matchstick-height);
+    width: var(--matchstick-width);
+    display: flex;
+    flex-direction: column;
+}
+
+.matchstick .wick-box{
+    height: var(--matchstick-head-size);
+}
+
+.matchstick .matchstick-body{
+    flex: 1;
+    background-color: var(--matchstick-color);
+}

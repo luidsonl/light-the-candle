@@ -61,11 +61,10 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
         userSelect: "none",
       }}
       onMouseDown={handleMouseDown}
+      className="candle"
     >
-      <div className="candle">
-        <div className="wick-box">{lit ? <Flame /> : <Wick />}</div>
-        <div className="candle-body"></div>
-      </div>
+      <div className="wick-box">{lit ? <Flame /> : <Wick />}</div>
+      <div className="candle-body"></div>
     </div>
   );
 }
