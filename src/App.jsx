@@ -10,7 +10,10 @@ export default function App(){
         <RenderProvider>
             <CollisionProvider>
                 <Candle  initialPosition={{x: 300, y:100}}/>
-                <Candle/>
+                <Candle initialPosition={{x: 100, y:100}}/>
+                <Candle initialPosition={{x: 500, y:100}}/>
+                <Candle initialPosition={{x: 700, y:100}}/>
+                <Candle initialPosition={{x: 900, y:100}}/>
 
                 <MatchStick initialPosition={{x: 100, y: 500}}/>
             </CollisionProvider>
