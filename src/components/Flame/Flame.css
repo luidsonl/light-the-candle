@@ -1,0 +1,87 @@
+.flame {
+  --flame-size: 1;
+  position: absolute;
+  width: calc(80px * var(--flame-size));
+  height: calc(120px * var(--flame-size));
+  top: calc(-70px * var(--flame-size));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(calc(1px * var(--flame-size)));
+  pointer-events: none;
+}
+
+.flame-glow {
+  position: relative;
+  width: calc(60px * var(--flame-size));
+  height: calc(100px * var(--flame-size));
+  background: linear-gradient(
+    to top,
+    #ff6b00 0%,
+    #ff8c00 30%,
+    #ffaa00 50%,
+    #ffdd00 70%,
+    #fff700 100%
+  );
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flameFlicker 0.3s ease-in-out infinite alternate,
+             flameSway 2s ease-in-out infinite;
+  box-shadow: 
+    0 0 calc(20px * var(--flame-size)) rgba(255, 107, 0, 0.8),
+    0 0 calc(40px * var(--flame-size)) rgba(255, 140, 0, 0.6),
+    0 0 calc(60px * var(--flame-size)) rgba(255, 170, 0, 0.4),
+    inset 0 calc(-20px * var(--flame-size)) calc(30px * var(--flame-size)) rgba(0, 0, 0, 0.3);
+}
+
+.flame-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(30px * var(--flame-size));
+  height: calc(60px * var(--flame-size));
+  background: linear-gradient(
+    to top,
+    #ff8c00 0%,
+    #ffdd00 50%,
+    #fff700 100%
+  );
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: innerFlameFlicker 0.2s ease-in-out infinite alternate;
+  box-shadow: 
+    0 0 calc(15px * var(--flame-size)) rgba(255, 247, 0, 0.8),
+    inset 0 calc(-10px * var(--flame-size)) calc(20px * var(--flame-size)) rgba(255, 255, 255, 0.5);
+}
+
+@keyframes flameFlicker {
+  0% {
+    transform: scale(1, 1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95, 1.05) translateY(calc(-2px * var(--flame-size)));
+    opacity: 0.95;
+  }
+}
+
+@keyframes innerFlameFlicker {
+  0% {
+    transform: translate(-50%, -50%) scale(1, 1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.9, 1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes flameSway {
+  0%, 100% {
+    transform: rotate(-2deg) translateX(calc(-2px * var(--flame-size)));
+  }
+  50% {
+    transform: rotate(2deg) translateX(calc(2px * var(--flame-size)));
+  }
+}

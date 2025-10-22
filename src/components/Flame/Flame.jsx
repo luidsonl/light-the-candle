@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Flame(){
+import './Flame.css';  
+
+export default function Flame({flameSize= 3}){
 
 
   return (
-    <div 
-        className="flame"
+    <div
+      className="flame"
+      style={{
+        '--flame-size': flameSize * 0.1,
+      }}
     >
+        
+      <div className="flame-glow">
         <div className="flame-inner"></div>
-        <div className="flame-glow"></div>
+      </div>
     </div>
   );
 };
