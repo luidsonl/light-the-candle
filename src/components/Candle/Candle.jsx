@@ -21,6 +21,10 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
   const lastTime = useRef(performance.now());
   const lastToggle = useRef(0);
 
+  const allwaysLight = new URLSearchParams(window.location.search).has('light');
+
+  console.log(allwaysLight);
+
   const handleMouseDown = (e) => {
     setOffset({ x: e.clientX - position.x, y: e.clientY - position.y });
     setIsDragging(true);
@@ -89,7 +93,7 @@ export default function Candle({ initialPosition = { x: 100, y: 100 } }) {
       onMouseDown={handleMouseDown}
       className="candle"
     >
-      <div className="wick-box">{lit && <Flame />} <Wick setLit={setLit} /></div>
+      <div className="wick-box">{(lit || allwaysLight) && <Flame />} <Wick setLit={setLit} /></div>
       <div className="candle-body"></div>
     </div>
   );
